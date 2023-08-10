@@ -1,0 +1,34 @@
+// n size array nums from that array one element occurance in >n/2.
+// Use map 
+// time complexity=0(n);
+// I/P :nums=[3,2,3]
+// o/p:3
+
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        //create map for distinct elements and their value as counts;
+        map<int, int> MajorityMap;
+        //run loop at once
+        int length = nums.size();
+
+        for(int i=0;i<length;i++){
+            MajorityMap[nums[i]]=MajorityMap[nums[i]] +1;
+                
+        }
+        int major=0;
+        int majorcount=0;
+        //find major element by counting occurance in map
+        for (const auto& entry : MajorityMap ) {
+           if(entry.second>=majorcount){
+               major=entry.first;
+               majorcount=entry.second;
+           }
+           if(majorcount>length/2){
+               break;
+           }
+        }
+        return major;
+    }
+};
